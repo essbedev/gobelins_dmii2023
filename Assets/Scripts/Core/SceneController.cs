@@ -10,13 +10,14 @@ public class SceneController : Singleton<SceneController>
     public event SceneControllerEvent OnOpenScene;
     public event SceneControllerEvent OnCloseScene;
 
+
     public void OpenScene(string scene, LoadSceneMode mode = LoadSceneMode.Additive){
         SceneManager.LoadSceneAsync(scene, mode);
         OnOpenScene?.Invoke(scene);
     }
 
-    public void CloseScene(string scene) {
+    public void CloseScene(string scene){
         SceneManager.UnloadSceneAsync(scene);
         OnCloseScene?.Invoke(scene);
     }
-} 
+}

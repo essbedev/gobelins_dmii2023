@@ -7,7 +7,6 @@ public class MainController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneController.Instance.OpenScene("TV");
         SceneController.Instance.OpenScene("One");
     }
 
@@ -16,7 +15,6 @@ public class MainController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space)){
             SceneController.Instance.OpenScene("Two");
-            SceneController.Instance.CloseScene("One");
         }
     }
 }
