@@ -9,13 +9,18 @@ public class OrbitParticle : MonoBehaviour
     public float Speed = 1f;
     public float Radius;
 
+    public float Scale = 1f;
+    public float RotateSpeed = 1f;
+
     void Start()
     {
+        transform.localScale = Vector3.one*Scale;
         transform.localRotation = Quaternion.Euler(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f));
     }
 
     void Update()
     {
+        transform.Rotate(Vector3.one*RotateSpeed*Time.deltaTime);
         Polar+=Speed*Time.deltaTime;
         transform.localPosition = GetSpherePoint();
     }

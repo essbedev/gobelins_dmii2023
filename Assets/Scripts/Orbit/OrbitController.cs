@@ -5,6 +5,19 @@ using UnityEngine;
 public class OrbitController : MonoBehaviour
 {
 
+    public float MinRadius = 4f;
+    public float RadiusRandom = 1f;
+
+    public float MinSpeed = 0f;
+    public float SpeedRandom = 1f;
+
+    public float ElevationAngle = 20;
+
+    public float MinScale = .1f;
+    public float ScaleRandom = .5f;
+    public float MinLocalRotation = 0f;
+    public float LocalRotationRandom = 1f;
+
     public int Count;
     public GameObject[] Prefabs;
     public Material[] Materials;
@@ -20,9 +33,11 @@ public class OrbitController : MonoBehaviour
             GameObject g = Instantiate<GameObject>(Prefabs[Random.Range(0,Prefabs.Length)], transform);
             OrbitParticle p = g.AddComponent<OrbitParticle>();
             p.Polar = Mathf.PI*2f*Random.value;
-            p.Elevation = (Random.value*2f-1f) * .02f * Mathf.PI;
-            p.Radius = 4.5f + Random.value*.5f;
-            p.Speed = .5f + Random.value * .5f;
+            p.Elevation = (Random.value*2f-1f) * ElevationAngle * Mathf.Deg2Rad;
+            p.Radius = MinRadius + Random.value*RadiusRandom;
+            p.Speed = MinSpeed + Random.value * SpeedRandom;
+            p.Scale = MinScale + Random.value * ScaleRandom;
+            p.RotateSpeed = MinLocalRotation + Random.value * LocalRotationRandom;
             _particles[i] = p;
             g.GetComponent<Renderer>().material = Materials[Random.Range(0,Materials.Length)];
         }
