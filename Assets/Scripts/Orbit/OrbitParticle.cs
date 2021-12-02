@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class OrbitParticle : MonoBehaviour
+{
+    public float Elevation;
+    public float Polar;
+    public float Speed = 1f;
+    public float Radius;
+
+    void Start()
+    {
+        transform.localRotation = Quaternion.Euler(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f));
+    }
+
+    void Update()
+    {
+        Polar+=Speed*Time.deltaTime;
+        transform.localPosition = GetSpherePoint();
+    }
+
+    private Vector3 GetSpherePoint()
+    {
+        float a = Radius * Mathf.Cos(Elevation);
+        return new Vector3(
+            a * Mathf.Cos(Polar),
+            Radius * Mathf.Sin(Elevation),
+            a * Mathf.Sin(Polar)
+        );
+    }
+}
